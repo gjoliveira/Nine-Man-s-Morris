@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Trilha - Jogo de Estratégia</title>
+    <!-- Link para o arquivo CSS externo -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome para os ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header class="header">
+        <!-- Logotipo do Jogo -->
+        <div class="logo">
+            <span>NINE MEN'S MORRIS</span> 
+        </div>
+        
+
+            <!-- Existing content in your HTML file -->
+        <div class="auth">
+            <!-- This container will be updated dynamically by JavaScript -->
+            <div class="auth-welcome hidden">
+                <span class="welcome-message"></span>
+                <button id="leave-game-button" class="logout-button hidden">Abandonar Jogo</button>
+                <button id="logout-button" class="logout-button hidden">Terminar Sessão</button>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Linha Delimitadora -->
+    <hr class="separator">
+
+    <div class="background-container">
+
+    <!-- Seção de Definições -->
+    <section class="definitions">
+
+        <div class = "command-icon" id = "settings-icon" title="Configurações">
+            <i class = "fas fa-cog"></i>
+        
+        </div>
+      
+        <!-- Quadrado de Comandos -->
+        <div class="command-square">
+            <!-- Ícone de Desistir (Bandeira) -->
+            <div class="command-icon" id="resign-game" title="Desistir">
+                <i class="fas fa-flag"></i>
+                <span>Desistir</span>
+            </div>
+
+            <!-- Ícone de Classificações -->
+            <div class="command-icon" id="show-rankings" title="Classificações">
+                <i class="fas fa-trophy"></i>
+                <span>Classificações</span>
+            </div>
+
+            <!-- Ícone de Reiniciar Jogo -->
+            <div class="command-icon" id="restart-game" title="Reiniciar Jogo">
+                <i class="fas fa-redo-alt"></i>
+                <span>Reiniciar</span>
+            </div>
+
+            <!-- Ícone de Instruções -->
+            <div class="command-icon" id="show-instructions" title="Instruções">
+                <i class="fas fa-question-circle"></i>
+                <span>Instruções</span>
+            </div>
+        </div>
+
+      
+    </section>
+
+    <!-- Authentication Window -->
+    <div id="auth-screen" class="auth-screen">
+    <div class="auth-container">
+        <h2>Bem-vindo ao Nine Men's Morris</h2>
+        <div class="mode-buttons">
+            <button id="play-offline">Jogar Offline</button>
+            <button id="play-online">Jogar no Servidor</button>
+            <button id="play-custom-server">Jogar no Servidor Criado</button>
+        </div>        
+        <div class="auth-actions hidden">
+            <button id="register-button">Registrar</button>
+            <button id="login-button">Login</button>
+        </div>
+        <form id="auth-form" class="hidden">
+            <input type="text" id="auth-username" placeholder="Nome de Usuário" required>
+            <input type="password" id="auth-password" placeholder="Senha" required>
+
+            <div class="setting">
+                <label for="board-size-auth">Tamanho do Tabuleiro:</label>
+                <select id="board-size-auth">
+                    <!-- IGNORAR OS NOMES PARA O TAMANHO, DEPOIS AJUSTAMOS COM O TAMANHO REAL-->
+                    <option value="2">2 </option>
+                    <option value="3" selected>3 </option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+            
+                </select>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" id="submit-button" >Entrar</button>
+                <button type="button" id="back-button">Voltar</button>
+            </div>
+        </form>
+        <p id="auth-error" class="error hidden"></p>
+    </div>
+    </div>
+
+    
+    
+
+        
+    <div id="ranking-panel" class="popup hidden">
+        <div class="popup-content">
+            <h2>Classificações</h2>
+            <button id="close-ranking-btn">Fechar</button>
+        
+        <!-- Contêiner da Tabela com Scroll -->
+            <div class="ranking-table-container">
+                <table id="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>Posição</th>
+                            <th>Jogador</th>
+                            <th>Nº de Vitórias</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ranking-body">
+                    <!-- Linhas de classificação serão preenchidas via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+
+<!-- Popup de Confirmação de Desistência -->
+    <div id="confirm-resign-popup" class="popup hidden">
+        <div class="popup-content">
+            <h2>Quer mesmo desistir desta partida?</h2>
+            <div class="popup-actions">
+                <button id="confirm-resign-yes">Sim</button>
+                <button id="confirm-resign-no">Não</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Tabuleiro do Jogo -->
+    <main class="main-content"  id="mainContent">
+
+        <div id = "instrucoes-container">
+            <img id="instrucoes-img" class="instrucoes-img" src="images/instrucoes.png" alt="Instruções">
+            <!--<button id = "close-instructions">Fechar</button> -->
+            
+        </div>
+
+        <div class = "overlay">
+        <!-- Pop-up de Configurações -->
+        <div id="settings-popup" class="popup hidden">
+            <div class="popup-content">
+                <h2>Configurações do Jogo</h2>
+                
+                <!-- Opção de tamanho do tabuleiro -->
+                <div class="setting">
+                    <label for="board-size">Tamanho do Tabuleiro:</label>
+                    <select id="board-size">
+                        <!-- IGNORAR OS NOMES PARA O TAMANHO, DEPOIS AJUSTAMOS COM O TAMANHO REAL-->
+                        <option value="2">2 </option>
+                        <option value="3" selected>3 </option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        
+                    </select>
+                </div>
+                
+                <!-- Opção de tipo de jogo -->
+                <div class="setting">
+                    <label for="game-mode">Modo de Jogo:</label>
+                    <input type="radio" id="player-vs-player" name="game-mode" value="pvp" checked> Jogador vs Jogador
+                    <input type="radio" id="player-vs-ai" name="game-mode" value="pve"> Jogador vs IA
+                    <input type="radio" id="player-vs-server" name="game-mode" value="pvs" style="display: none;">
+                </div>
+
+                <!-- Dificuldade da IA (aparece apenas se jogador vs IA) -->
+                <div class="setting ia-settings hidden">
+                    <label for="ai-difficulty">Dificuldade da IA:</label>
+                    <select id="ai-difficulty">
+                        <option value="easy">Iniciante</option>
+                        <option value="medium">Intermédio</option>
+                        <option value="hard">Difícil</option>
+                    </select>
+                </div>
+
+                <!-- Quem começa -->
+                <div class="setting">
+                    <label for="first-player">Primeiro Jogador:</label>
+                    <select id="first-player">
+                        <option value="player1">Jogador 1</option>
+                        <option value="player2">Jogador 2</option>
+                        <option value="random">Aleatório</option>
+                    </select>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="popup-actions">
+                    <button id="close-popup">Fechar</button>
+                    <button id="save-settings">Salvar</button>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+        
+        
+        <!-- Peças do Player 1 à esquerda -->
+        <!-- Área do Jogador 1 -->
+        <div class="mensagem">
+            <span id="mensagem_atual"></span>
+        </div>
+
+
+        <div id="inactivity-timer"></div>
+    
+        <div class="container">
+
+            
+            <!-- Área de peças do jogador 1 -->
+            <div class="pecas-jogador-area">
+                <div class="pecas-jogador" id="pecas-jogador1"></div>
+                <div class="pecas-capturadas" id="capturadas-jogador1"></div>
+            </div>
+        
+            <!-- Tabuleiro -->
+            <div class="board" id="game-board">
+                <div id="waiting-message" class="waiting-message hidden">WAITING FOR A PLAYER...</div>
+            </div>
+        
+            <!-- Área de peças do jogador 2 -->
+            <div class="pecas-jogador-area">
+                <div class="pecas-jogador" id="pecas-jogador2"></div>
+                <div class="pecas-capturadas" id="capturadas-jogador2"></div>
+            </div>
+        </div>
+    
+    </main>
+    
+
+    </div> <!-- Fim do contêiner de fundo -->
+    <script src="game.js"></script> 
+
+
+</body>
+</html>

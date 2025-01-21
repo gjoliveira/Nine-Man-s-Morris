@@ -1,0 +1,1169 @@
+/* Reset básico de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+.background-container {
+    background-image: url('images/background.jpeg'); /* Altere para o caminho correto da sua imagem */
+    background-size: cover; /* Cobre todo o espaço do contêiner */
+    background-position: center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Não repete a imagem */
+    padding: 20px; /* Ajuste o espaçamento, se necessário */
+}
+
+.overlay {
+    position: fixed; /* Fica fixo na tela */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semitransparente */
+    backdrop-filter: blur(5px); /* Aplica efeito de desfoque ao fundo */
+    display: none; /* Oculto por padrão */
+    z-index: 9998; /* Colocado abaixo do pop-up */
+}
+
+/* Cabeçalho */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #3e2723;
+    color: #f5f5f5;
+}
+
+/* Fonte vintage */
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&display=swap');
+
+/* Estilos do logotipo */
+.logo {
+    font-family: 'Playfair Display', serif; /* Fonte com estilo clássico */
+    font-size: 2em; /* Tamanho grande para destaque */
+    color: #8b5e3c; /* Marrom escuro, evocando madeira */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra para profundidade */
+    letter-spacing: 3px; /* Espaçamento entre letras */
+    text-align: left; /* Alinha o texto à esquerda */
+    padding: 20px;
+    width: fit-content;
+    margin: 5px 0 5px 0; /* Alinha o logotipo ao topo e mantém o espaço à esquerda */
+    position: relative;
+    left: 0;
+}
+
+.welcome-message {
+    font-family: 'Playfair Display', serif; /* Match the logo's font */
+    font-size: 1em; /* Slightly smaller than the logo */
+    color: #f7ebd8; /* Use the same warm brown color as the logo */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    letter-spacing: 2px; /* Slight spacing between letters for elegance */
+    text-align: center; /* Center-align the text */
+    margin-top: 10px; /* Small space above the message */
+    margin-bottom: 20px; /* Space below the message */
+}
+
+
+/* Área de Autenticação */
+.auth {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.auth input, .auth button {
+    padding: 8px;
+    border-radius: 4px;
+    color: #3e2723;
+    border: none;
+}
+
+.auth input {
+    background-color: #d7ccc8;
+}
+
+.auth button {
+    background-color: #8d6e63;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth button:hover {
+    background-color: #6f4c3e;
+}
+
+/* Linha Delimitadora */
+.separator {
+    width: 100%;
+    height: 2px;
+    background-color: #bdc3c7;
+}
+
+/* Seção de Definições */
+.definitions {
+    padding: 20px 40px;
+    background-color: #efebe9;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3.5px;
+}
+
+.definitions h2 {
+    margin-bottom: 20px;
+    color: #3e2723;
+}
+
+/* Estilo para o menu de configurações */
+.settings-menu {
+    padding: 20px;
+    background-color: #f8f1e1;
+    border: 2px solid #8c735a;
+    border-radius: 8px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100px;
+    right: 50px;
+}
+
+.settings-menu h3 {
+    margin-bottom: 15px;
+    color: #4b502c;
+}
+
+.setting-option {
+    margin-bottom: 10px;
+}
+
+/* Estilo do ícone de Configurações */
+#settings-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #5c4631;
+    transition: color 0.3s;
+}
+
+#settings-icon:hover {
+    color: #302112;
+}
+
+
+
+/* Estilo do Pop-up DAS CONFIGURAÇÕES*/
+/*  */
+.popup {
+    background-color: #f7efe2; /* Tom suave e envelhecido */
+    border: 3px solid #a67c52;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra mais suave e espaçada */
+    border-radius: 20px;
+    font-family: 'Cinzel', serif;
+    padding: 30px 40px; /* Maior espaçamento interno */
+    max-width: 655px;
+    margin: 0 auto;
+    position: absolute; /* Centraliza dentro de main-content */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    display: none;
+}
+
+/* Exibir pop-up quando visível */
+.popup:not(.hidden) {
+    display: block;
+}
+
+/* Título do Pop-up */
+.popup h2 {
+    color: #6a4a3c;
+    font-size: 2em; /* Aumenta o título */
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 3px #bfa58d; /* Sombra suave com tom vintage */
+    margin-bottom: 25px; /* Espaçamento maior abaixo do título */
+}
+
+/* Label e Textos */
+.popup label {
+    color: #5e4b3c;
+    font-size: 1.2em; /* Aumenta o tamanho do texto */
+    font-weight: bold;
+    display: block; /* Coloca cada label em sua própria linha */
+    margin-bottom: 10px; /* Espaço adicional abaixo de cada label */
+}
+
+/* Estilo para Inputs e Selects */
+.popup select, .popup input[type="radio"] {
+    background-color: #efe3ca;
+    border: 2px solid #a67c52;
+    border-radius: 8px;
+    color: #5e4b3c;
+    padding: 8px 12px; /* Espaçamento interno para um toque vintage */
+    margin-bottom: 20px; /* Espaçamento maior entre elementos */
+    font-family: 'Georgia', serif;
+    font-size: 0.9em;
+}
+
+/* Efeito Hover em Selects e Radio Inputs */
+.popup select:hover, .popup input[type="radio"]:hover {
+    background-color: #f0e3c7;
+    border-color: #8c6d52;
+}
+
+/* Ajustes para Espaçamento e Organização Geral */
+.popup .input-group {
+    margin-bottom: 20px; /* Espaçamento extra entre grupos de input */
+}
+
+.popup .radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Efeito final vintage */
+.popup {
+    background-image: linear-gradient(145deg, #f7efe2, #ede1c8); /* Textura suave */
+    border: 3px solid #b8996b; /* Borda em tom mais envelhecido */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), inset 0 1px 3px rgba(255, 255, 255, 0.1); /* Sombra suave e profunda */
+}
+
+
+/* Botões de Ação - Estilo Vintage */
+.popup-actions button {
+    background-color: #6a4a3c;
+    border: 2px solid #4b3827;
+    color: #f7ebd8;
+    padding: 12px 24px;
+    font-size: 1.1em;
+    font-family: 'Cinzel', serif;
+    border-radius: 12px;
+    margin: 10px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px #2e2118;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 12px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, transform 0.3s;
+}
+
+.popup-actions button:hover {
+    background-color: #8a674d;
+    border-color: #5a3d2a;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4), 0 8px 16px rgba(0, 0, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+.popup-actions button:active {
+    background-color: #5a3d2a;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5);
+    transform: translateY(1px);
+}
+
+.popup-actions {
+    text-align: center;
+}
+
+/* Quadrado de Comandos Com os Icones  */
+.command-square {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #d7ccc8;
+    border: 2px solid #8d6e63;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de cada ícone */
+.command-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+    color: #3e2723;
+}
+
+.command-icon:hover {
+    transform: scale(1.1);
+    color: #6f4c3e;
+}
+
+.command-icon i {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.command-icon span {
+    font-size: 0.9em;
+}
+
+/* Estilo para a imagem de instruções */
+
+#instrucoes-container {
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10001;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.instrucoes-img {
+    max-width: 100%;
+    border: 2px solid #8d6e63;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* Área Principal */
+.main-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Adiciona flex-direction para permitir que os itens sejam empilhados verticalmente */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    min-height: 60vh;
+    background-color: #f5f5f5;
+    position: relative; /* Necessário para centralizar o pop-up dentro do main-content */
+}
+
+.cell {
+    background-color: #d7ccc8;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+}
+
+.cell:hover {
+    background-color: #bcaaa4;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding : 10 px 20px;
+    }
+
+    .command-square {
+        width: 90%;
+        padding: 10 px;
+        flex-wrap : wrap;
+        gap : 10 px;
+    }
+
+    .definitions{
+        padding: 10px;
+        gap : 5px;
+
+    }
+
+    .mensagem{
+        font-size: 1.2em;
+        padding: 10 px;
+    }
+
+    
+
+    .board {
+        width: 90%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+        
+    } 
+    
+    .splash-screen img {
+        max-width: 90vw;
+        max-height: 70vh;
+    }
+
+    .popup {
+        padding: 2vh 3vw; /* Ajusta o padding para telas pequenas */
+    }
+
+    .logo {
+        font-size: 1.5em;
+    }
+
+    .pecas-jogador,
+    .pecas-capturadas {
+        display: flex;
+        flex-wrap: nowrap; /* Impede quebra de linha */
+        flex-direction: row; /* Disposição horizontal das peças */
+        justify-content: flex-start; /* Alinha as peças à esquerda */
+        padding: 10px;
+        max-height: 180px;
+        gap: 10px; /* Espaçamento entre as peças */
+        width: 100%; /* Ocupa toda a largura disponível */
+        background-color: #e0e0e0;
+        border: 3px solid #3e2723;
+        border-radius: 8px;
+        overflow-x: auto; /* Ativa a rolagem horizontal quando necessário */
+    }
+
+    .peca {
+        width: 40px; /* Ajuste do tamanho das peças */
+        height: 40px;
+        margin: 5px;
+    }
+
+    /* Ajusta a disposição das peças capturadas e por jogar */
+    .pecas-jogador-area,
+    .pecas-capturadas-area {
+        margin: 0 5px; /* Adicionando margem nas laterais */
+    }
+
+
+
+    .board {
+        width: 80%;
+        height: auto;
+        margin: 0 auto; /* Para centralizar o tabuleiro */
+    }
+
+
+
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .popup h2 {
+        font-size: 1.5em;
+    }
+
+    .settings-menu {
+        width: 80vw;
+        right: 10px;
+        top: 50px;
+    }
+
+    .pecas-jogador,
+    .pecas-capturadas {
+        flex-direction: column; /* Muda para disposição em coluna em telas pequenas */
+        align-items: center; /* Alinha as peças no centro */
+        overflow-y: auto; /* Ativa rolagem vertical se necessário */
+    }
+
+    .peca {
+        width: 35px; /* Reduz o tamanho das peças */
+        height: 35px;
+    }
+
+    /* Ajusta as margens para melhor visualização em telas pequenas */
+    .pecas-jogador-area,
+    .pecas-capturadas-area {
+        margin: 0 2px;
+    }
+
+    
+
+}
+/* Estilos para o tabuleiro centralizado */
+.board {
+    position: relative;
+    width: 80vw; /* Usa 80% da largura da janela */
+    max-width: 500px; /* Limite máximo de largura */
+    aspect-ratio: 1 / 1; /* Mantém a proporção de 1:1 para manter o formato quadrado */
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 10px;
+   
+}
+
+/* Estilo para os nós (círculos) */
+.no {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #333;
+    /* Cor sólida azul para os nós */
+    border-radius: 50%;
+    border: 2px solid #333;
+    /* Borda escura */
+    transform: translate(-50%, -50%);
+    /* Centralizar o círculo na posição */
+    z-index: 2;
+    /* Colocar os nós acima das linhas */
+}
+
+
+/* Estilo para as linhas (conexões entre os nós) */
+.linha {
+    position: absolute;
+    background-color: #333;
+    /* Cor escura para as linhas */
+    transform-origin: 0 0;
+    /* Para facilitar a rotação */
+    z-index: 1;
+    /* As linhas ficam abaixo dos nós */
+}
+
+.player1 {
+    background-color: #ff0000; 
+    /* Castanho claro para o jogador 1 */
+    width: 35px;
+    /* Aumente o tamanho ligeiramente */
+    height: 35px;
+    border: 2px solid #bcaaa4;
+    /* Borda mais clara */
+}
+
+.player2 {
+    background-color: #0000ff; /* Blue color */
+    /* Castanho escuro para o jogador 2 */
+    width: 35px;
+    /* Aumente o tamanho ligeiramente */
+    height: 35px;
+    border: 2px solid #6f4c3e;
+    /* Borda mais escura */
+}
+
+@keyframes piscar {
+
+    0%,
+    100% {
+        border-color: #39ff14;
+        /* Verde neon */
+        box-shadow: 0 0 8px #39ff14, 0 0 16px #39ff14;
+    }
+
+    50% {
+        border-color: transparent;
+        box-shadow: none;
+    }
+}
+
+.destacar-verde {
+    animation: piscar 1.5s infinite;
+    animation-delay: -1.5s;
+    /* Faz a animação começar em sincronia, como se já estivesse rodando */
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 50%;
+}
+
+/* Classe para destacar os nós dos moinhos com borda neon amarela sólida */
+.destacar-amarelo {
+    border-color: #ffd700; /* Amarelo vivo */
+    box-shadow: 0 0 8px #ffd700, 0 0 16px #ffd700, 0 0 24px #ffd700;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 50%;
+}
+
+/* Classe para destacar as linhas dos moinhos com neon amarelo vivo */
+.linha-destacar-amarelo {
+    position: absolute;
+    background-color: #ffd700;
+    /* Amarelo vivo */
+    box-shadow: 0 0 8px #ffd700, 0 0 16px #ffd700, 0 0 24px #ffd700;
+    height: 2px;
+    /* Espessura da linha */
+}
+
+/* Classe para nós capturáveis durante a fase 3 */
+.capturavel-vermelho {
+    border: 3px solid red;
+    box-shadow: 0 0 8px red;
+    /* Efeito de destaque */
+    border-radius: 50%;
+}
+
+/* Novo estilo para destacar a peça selecionada com borda verde */
+.destacar-selecao-verde {
+    border-color: #39ff14;
+    /* Verde neon sólido */
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #39ff14;
+}
+
+.desativado {
+    opacity: 0.5;
+    /* Exemplo de estilo: reduz opacidade */
+    pointer-events: none;
+    /* Desativa interações adicionais */
+}
+
+.mensagem {
+    text-align: center;
+    margin: 0; /* Remove margens para encostar ao topo */
+    padding: 5px 0px 40px; /* Ajuste o padding conforme necessário */
+    font-size: 1.5em;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 2px 2px 5px rgba(207, 19, 19, 0.3); /* Sombra para profundidade */
+    letter-spacing: 3px; /* Espaçamento entre letras */
+    color: #3e2723;
+}
+
+/* Estilos principais para layout em colunas */
+/* Estilos principais para layout em colunas */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    
+}
+
+
+
+/* Mudar para direção de coluna para as peças e capturas */
+.pecas-jogador,
+.pecas-capturadas {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar para novas colunas */
+    flex-direction: column; /* Direção de coluna para organizar as peças verticalmente */
+    align-content: flex-start; /* Alinha novas colunas ao início do container */
+    width: 100%; /* Preenche a área disponível */
+    padding: 5px;
+    max-height: 300px; /* Limita a altura total do container */
+    background-color: #e0e0e0;
+    border: 3px solid #3e2723;
+    border-radius: 8px;
+    overflow-y: auto; /* Rolagem vertical para o conteúdo extra */
+    
+}
+
+/* Remover margens ou adicionar margens nas laterais se necessário */
+.pecas-jogador-area {
+    margin: 0 5px; /* Adicionando margem nas laterais */
+}
+
+/* Estilos para as peças individuais */
+.peca {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    border-radius: 50%;
+    border: 3px solid #3e2723;
+    background-color: #b0bec5;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.peca:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Diferenciação para as peças dos jogadores */
+.peca.player1 {
+    background-color: #ff0000; 
+}
+
+.peca.player2 {
+    background-color: #0000ff;
+}
+
+/* Efeito 3D nas peças */
+.peca::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Estilo do Painel de Classificação */
+#ranking-panel {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 2px solid #3e2723;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    padding: 20px;
+}
+
+#ranking-panel h2 {
+    text-align: center;
+    color: #3e2723;
+    margin-bottom: 10px;
+}
+
+#ranking-panel table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+#ranking-panel th, #ranking-panel td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#ranking-panel th {
+    background-color: #8d6e63;
+    color: #fff;
+}
+
+#ranking-panel .popup-content {
+    position: relative;
+}
+
+#close-ranking-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+}
+
+/* Contêiner da Tabela de Classificações com Rolagem */
+.ranking-table-container {
+    max-height: 200px; /* Define a altura máxima para o scroll */
+    overflow-y: auto; /* Adiciona a barra de rolagem vertical */
+    margin-top: 10px; /* Espaçamento entre o cabeçalho e a tabela */
+    border-top: 1px solid #ddd; /* Linha para separar cabeçalho do conteúdo */
+}
+
+/* Personalização da barra de rolagem */
+.ranking-table-container::-webkit-scrollbar {
+    width: 8px; /* Largura da barra de rolagem */
+}
+
+.ranking-table-container::-webkit-scrollbar-thumb {
+    background-color: #8d6e63; /* Cor da barra de rolagem */
+    border-radius: 4px; /* Bordas arredondadas para o polegar */
+}
+
+.ranking-table-container::-webkit-scrollbar-track {
+    background-color: #f5f5f5; /* Cor de fundo da trilha da barra */
+}
+
+
+
+/* Estilo do Popup de Confirmação de Desistência */
+#confirm-resign-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 2px solid #3e2723;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#confirm-resign-popup h2 {
+    color: #3e2723;
+    margin-bottom: 20px;
+}
+
+#confirm-resign-popup .popup-actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+#confirm-resign-popup button {
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#confirm-resign-yes {
+    background-color: #5cb85c;
+    color: #fff;
+}
+
+#confirm-resign-no {
+    background-color: #d9534f;
+    color: #fff;
+}
+
+#confirm-resign-yes:hover {
+    background-color: #4cae4c;
+}
+
+#confirm-resign-no:hover {
+    background-color: #c9302c;
+}
+
+/****************************************/
+
+
+/* Área de Autenticação */
+/* Authentication Screen */
+.auth-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px); /* Slight blur for the background */
+}
+
+.auth-container {
+    background: linear-gradient(135deg, #f7efe2, #f4e4cc); /* Soft vintage gradient */
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth */
+    text-align: center;
+    width: 350px;
+    border: 3px solid #b8996b; /* Aged border color */
+    font-family: 'Playfair Display', serif; /* Vintage font */
+}
+
+.auth-container h2 {
+    margin-bottom: 20px;
+    font-family: 'Cinzel', serif; /* Classic serif font */
+    color: #6a4a3c; /* Warm vintage tone */
+    font-size: 1.8em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Buttons for Mode Selection */
+.mode-buttons {
+    display: flex; /* Align buttons horizontally */
+    justify-content: center; /* Center buttons horizontally */
+    gap: 10px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    margin-top: 20px;
+}
+
+.mode-buttons button,
+.auth-actions button {
+    flex: 1 1 150px; /* Flex to ensure same width, min width 150px */
+    max-width: 200px; /* Prevent overly large buttons */
+    text-align: center; /* Center button text */
+    padding: 10px 15px;
+    font-family: 'Cinzel', serif; /* Vintage font */
+    font-size: 1em;
+    background-color: #6a4a3c; /* Consistent button color */
+    color: #f7efe2; /* Light text color */
+    border: 2px solid #4b3827; /* Darker border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.mode-buttons button:hover,
+.auth-actions button:hover {
+    background-color: #8a674d; /* Lighter hover */
+}
+
+.mode-buttons button:active,
+.auth-actions button:active {
+    background-color: #5a3d2a; /* Darker tone */
+    transform: translateY(1px); /* Press effect */
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Input Fields */
+.auth-container form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #a67c52; /* Warm border tone */
+    border-radius: 8px;
+    background-color: #efe3ca; /* Aged paper tone */
+    font-family: 'Georgia', serif;
+    font-size: 0.95em;
+    color: #5e4b3c; /* Dark brown text */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.auth-container form input:focus {
+    border-color: #8c6d52; /* Highlight on focus */
+    outline: none;
+    box-shadow: 0 0 8px rgba(140, 109, 82, 0.5); /* Subtle glow */
+}
+
+/* Buttons for Form */
+.auth-container form button {
+    width: 100%;
+    padding: 12px;
+    background: #6a4a3c; /* Warm brown button */
+    border: 2px solid #4b3827; /* Darker border */
+    color: #f7ebd8; /* Light vintage text */
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 12px;
+    font-family: 'Cinzel', serif;
+    text-shadow: 1px 1px 2px #2e2118;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 12px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, transform 0.3s;
+}
+
+.auth-container form button:hover {
+    background-color: #8a674d; /* Slightly lighter tone */
+    border-color: #5a3d2a;
+    transform: translateY(-2px); /* Lift effect */
+}
+
+.auth-container form button:active {
+    background-color: #5a3d2a; /* Darker tone when pressed */
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5);
+    transform: translateY(1px);
+}
+
+
+
+label[for="board-size-auth"] {
+    color: #6a4a3c; /* Match the vintage tone */
+    font-size: 1.2em; /* Emphasize the label */
+    font-family: 'Cinzel', serif; /* Consistent font */
+    flex-shrink: 0; /* Prevent the label from shrinking */
+    margin: 0; /* Reset margins for better alignment */
+
+}
+
+.setting {
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically center the items */
+    gap: 10px; /* Add spacing between the label and the dropdown */
+    margin-bottom: 15px; /* Add some space below the setting */
+}
+
+#board-size-auth {
+    background-color: #efe3ca; /* Vintage paper tone */
+    border: 2px solid #a67c52; /* Warm border tone (instead of black) */
+    border-radius: 8px;
+    color: #5e4b3c; /* Dark brown text */
+    padding: 8px 12px; /* Comfortable padding */
+    font-family: 'Cinzel', serif; /* Elegant serif font */
+    font-size: 1em; /* Readable size */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transitions */
+    flex-grow: 1; /* Ensure the dropdown grows to fit the remaining space */
+    max-width: 200px; /* Optional: Limit the dropdown width */
+
+}
+
+
+
+#board-size-auth:focus {
+    border-color: #8b5e3c; /* Slightly darker border tone on focus */
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 6px rgba(139, 94, 60, 0.5); /* Glow effect on focus */
+
+}
+
+
+
+
+
+
+
+/* Back button */
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#back-button {
+    padding: 10px 20px;
+    background-color: #5a3d2a; /* Red tone for "Back" button */
+    border: 2px solid #5a3d2a; /* Darker red for border */
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 8px;
+    font-family: 'Cinzel', serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 12px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, transform 0.3s;
+}
+
+#back-button:hover {
+    background-color: #b52d2d; /* Slightly darker hover tone */
+    transform: translateY(-2px);
+}
+
+#back-button:active {
+    background-color: #a52828; /* Darkest tone on press */
+    transform: translateY(1px);
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Error Messages */
+.error {
+    color: #d9534f; /* Vintage red for errors */
+    font-size: 0.9em;
+    margin-top: 10px;
+    font-family: 'Georgia', serif;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Hidden Elements */
+.hidden {
+    display: none !important;
+}
+
+/* Action Buttons Container */
+.auth-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Form Container */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Logout Button */
+.logout-button {
+    padding: 10px 15px;
+    background: #6a4a3c; /* Warm brown tone */
+    color: #f7ebd8; /* Light vintage text */
+    font-family: 'Cinzel', serif;
+    font-size: 0.95em;
+    border: 2px solid #4b3827; /* Darker border */
+    border-radius: 8px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px #2e2118;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.logout-button:hover {
+    background-color: #8a674d;
+    border-color: #5a3d2a;
+    transform: translateY(-2px);
+}
+
+.logout-button:active {
+    background-color: #5a3d2a;
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Leave Game Button */
+#leave-game-button {
+    display: none; /* Hidden by default */
+    padding: 10px 20px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 1em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#leave-game-button:hover {
+    background-color: #c9302c;
+}
+
+.waiting-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif; /* Or any other vintage style font */
+    font-size: 1.5em;
+    color: #6a4a3c;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Slight translucent background */
+    padding: 20px;
+    border: 2px solid #8b5e3c;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+.hidden {
+    display: none;
+}
+
+
+#game-board {
+    position: relative;
+    background-color: #f8f5f0; /* Ensure a contrasting background */
+    width: 100%; /* Adjust as per your layout */
+    height: 100%; /* Ensure the container is visible */
+}
+
+
+#inactivity-timer {
+    font-size: 1.5em;
+    font-family: 'Georgia', 'Times New Roman', serif; /* Classic serif font */
+    font-weight: bold;
+    font-style: italic;
+    color: #8B0000; /* Dark muted red */
+    text-align: center;
+    margin: 15px auto;
+    padding: 8px 12px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    width: fit-content;
+}
